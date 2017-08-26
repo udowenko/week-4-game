@@ -1,0 +1,50 @@
+.container {
+
+	width 90%;
+	margin: 0,0,0,0;
+}
+
+#score {
+	display: inline-block;
+	float: left;
+	margin-right: 100px;
+	margin-left: 50px;
+}
+
+#randomNum {
+	font-size: large;
+}
+
+
+
+#pink {
+
+	height: 25%;
+	width: 25%;
+	float: left;
+}
+
+#yellow {
+
+	height: 25%;
+	width: 25%;
+	float: left;
+
+}
+	
+
+#blue {
+	
+	height: 25%;
+	width: 25%;
+	float: left;
+
+}
+
+#green {
+	
+	height: 25%;
+	width: 25%;
+	float: left;
+	
+}
