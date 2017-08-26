@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crystal Game</title>
+
+    <!-- Added link to the jQuery Library -->
+   
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	<meta name= "viewport" content= "width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+  	<link rel="stylesheet" type="text/css" href="assets/css/style.css">
+
+</head>
+
+
+ 
+<body>
+
+<div class="container jumbotron text-center">
+
+<h1> The Crystal Game </h1>
+
+<h2> Each crystal has hidden points. To win, you must match the number below. If you go above the number, you lose. </h2>
+<h2> Good Luck! </h2>
+
+<br>
+<br>
+<br>
+
+<div class= "row">
+		<div id = "score" class= "col md 3">
+				<h3> Number to beat: </h3>
+				<p id="randomNum"> </p>
+		</div>
+		<div id = "score" class= "score col md 3">
+				<h3> Your total: </h3>
+				<p id="total"> </p>
+		</div>
+
+		<div id = "score" class= "score col md 3">
+				<h3> Wins: </h3>
+				<div id = "wins">
+				</div>
+		</div>
+
+		<div id = "score" class= "score col md 3">
+				<h3> Losses: </h3>
+				<div id = "losses">
+				</div>
+
+		</div>
+
+</div>
+<br>
+<br>
+<br>
+<br>
+
+
+<div class= "row">
+		<div class= "col md 3">			
+				<div id= "pink">  </div>
+		</div>
+
+		<div class= "col md 3">			
+				<div id= "yellow">  </div>
+		</div>
+		<div class= "col md 3">			
+				<div id= "blue">  </div>
+		</div>
+		<div class= "col md 3">			
+				<div id= "green">  </div>
+		</div>
+</div>
+
+
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript">
+var userScore = 0;
+var wins = 0;
+var losses = 0;
+
+var crystalRandom = Math.floor(Math.random() * ((12-1) + 1) + 1);
+
+// DISPLAYING IMAGES AS BUTTONS, CREATING 4 CRYSTALS, GENERATING AND STORING RANDOM NUMBER IN EACH CRYSTAL
+var imageCrystal = $("<img>");
+  
+   
+    imageCrystal.attr("src", "assets/images/pinkgemstone.jpg");
+    // imageCrystal.attr("color", "pink");
+    imageCrystal.data("pink", crystalRandom);
+    console.log (crystalRandom);
+    $("#pink").append(imageCrystal);
+  imageCrystal.css({'width' : '150px' , 'height' : '150px'});
+
+ var crystalRandom2 = Math.floor(Math.random() * ((12-1) + 1) + 1);
+
+ var imageCrystal2 = $("<img>");
+
+
+  
+    imageCrystal2.attr("src", "assets/images/yellow.jpg");
+    imageCrystal2.data("yellow-image", crystalRandom2);
+    console.log (crystalRandom2);
+    $("#yellow").append(imageCrystal2);
+    imageCrystal2.css({'width' : '150px' , 'height' : '150px'});
+
+var crystalRandom3 = Math.floor(Math.random() * ((12-1) + 1) + 1);
+var imageCrystal3 = $("<img>");
+
+
+  
+    imageCrystal3.attr("src", "assets/images/blue.jpg");
+    imageCrystal3.data("blue-image", crystalRandom3);
+    console.log (crystalRandom3);
+    $("#blue").append(imageCrystal3);
+    imageCrystal3.css({'width' : '150px' , 'height' : '150px'});
+
+var crystalRandom4 = Math.floor(Math.random() * ((12-1) + 1) + 1);
+var imageCrystal4 = $("<img>");
+
+
+  
+    imageCrystal4.attr("src", "assets/images/green.jpg");
+    imageCrystal4.data("green-image", crystalRandom4);
+    console.log (crystalRandom4);
+    $("#green").append(imageCrystal4);
+    imageCrystal4.css({'width' : '150px' , 'height' : '150px'});
+
+// The player will be shown a random number at the start of the game (GENERATES A RANDOM NUMBER BEWTWEEN 19 AND 120, AND DISPLAYS TO PLAYER)
+
+
+  var randomNumber = Math.floor(Math.random() * ((120-19) + 1) + 19);
+  $("#randomNum").text(randomNumber);
+
+
+
+function Reset() {
+
+  userScore = 0;
+  $("#total").text(userScore);
+  crystalRandom = Math.floor(Math.random() * ((12-1) + 1) + 1);
+  crystalRandom2 = Math.floor(Math.random() * ((12-1) + 1) + 1);
+  crystalRandom3 = Math.floor(Math.random() * ((12-1) + 1) + 1);
+  crystalRandom4 = Math.floor(Math.random() * ((12-1) + 1) + 1);
+
+  randomNumber = Math.floor(Math.random() * ((120-19) + 1) + 19);
+  $("#randomNum").text(randomNumber);
+
+}
+// When the player clicks on a crystal, it will add a specific amount of points to the player's total score.
+$("#pink").on("click",function()
+   { userScore += crystalRandom;
+    console.log (userScore);
+    $("#total").text(userScore);
+
+    if (userScore === randomNumber){
+      console.log(crystalRandom);
+      console.log(userScore);
+
+      
+          
+      wins++;
+
+      $("#wins").text(wins);
+
+ 
+      alert("You win! Time to play again.");
+      
+
+      Reset();
+      
+    }
+
+    else if (userScore > randomNumber){
+      
+
+
+      losses++;
+      
+      $("#losses").text(losses);
+
+      alert("You lost! Time to play again.");
+      
+
+      Reset();
+    }
+});
+
+$("#yellow").on("click",function()
+   { userScore += crystalRandom2;
+    console.log (userScore);
+    $("#total").text(userScore);
+    if (userScore === randomNumber){
+      console.log(crystalRandom2);
+      console.log(userScore);
+      wins++;
+      $("#wins").text(wins);
+      alert("You win! Time to play again.");
+      Reset();
+    }
+
+    else if (userScore > randomNumber){
+      losses++;
+      $("#losses").text(losses);
+      alert("You lost! Time to play again.");
+      Reset();
+
+    }
+  
+});
+
+
+$("#blue").on("click",function()
+   { userScore += crystalRandom3;
+    console.log (userScore);
+    $("#total").text(userScore);
+    if (userScore === randomNumber){
+      console.log(crystalRandom3);
+      console.log(userScore);
+      wins++;
+      $("#wins").text(wins);
+      alert("You win! Time to play again.");
+      Reset();
+    }
+
+    else if (userScore > randomNumber){
+      losses++;
+      $("#losses").text(losses);
+      alert("You lost! Time to play again.");
+      Reset();
+
+    }
+  
+});
+
+$("#green").on("click",function()
+   { userScore += crystalRandom4;
+ 
+    console.log (userScore);
+    $("#total").text(userScore);
+
+    if (userScore === randomNumber){
+      console.log(crystalRandom4);
+      console.log(userScore);
+      wins++;
+      $("#wins").text(wins);
+      alert("You win! Time to play again.");
+      Reset();
+    }
+
+    else if (userScore > randomNumber){
+      losses++;
+      $("#losses").text(losses);
+      alert("You lost! Time to play again.");
+      Reset();
+
+    }
+  
+});
+	
+
+</script>
+	
+
+
+<!-- // $(document).ready(function() {
+
+
+
+
+
+ 
+
+
+  // $("#red")
+		// .text("")
+  //       .append("<img height="100" src="pinkgemstone.png" width="100" />")
+  //       .button();
+
+// });​
+
+
+  // 	$("<button>").addClass("background-button")
+  //       .attr("data-letter" , letters[i])
+  //       .text(letters[i])
+  //       .appendTo("#buttons");
+  // }
+
+  // $("<button>").addClass("letter-button letter letter-button-color")
+  //       .attr("data-letter" , letters[i])
+  //       .text(letters[i])
+  
+
+ //  	$("<button>").addClass("buttonImg");
+   
+ //   $("#buttonId").button({
+
+ //    	icons: {primary: null},
+ //    	text: false
+
+	// }).addClass("ButtonClass");
+
+
+
+// The player will have to guess the answer, just like in Hangman. This time, though, the player will guess with numbers instead of letters.
+// Here's how the app works:
+// There will be four crystals displayed as buttons on the page/ display images as buttons 
+ -->
